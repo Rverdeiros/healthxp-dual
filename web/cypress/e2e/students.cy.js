@@ -73,7 +73,7 @@ describe('alunos', () => {
         studentPage.requiredMessage('Idade', 'A idade mínima para treinar é 16 anos!')
     })
     it('tentar cadastrar informando peso incorreto', ()=>{
-        const student = students.invalid_weight
+        const student = students.invalid_height
         
         cy.task('deleteStudent', student.email)        
         

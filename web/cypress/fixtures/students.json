@@ -34,14 +34,13 @@
         "weight": "60",
         "feet_tall": "1.50"
     },
-    "invalid_weight":
-        {
-            "name": "Jonh Zero Weight",
-            "email": "johnzero@weight.com",
-            "age": "20",
-            "weight": "0",
-            "feet_tall": "1.62"
-        },
+    "invalid_weight": {
+        "name": "Jonh Zero Weight",
+        "email": "johnzero@weight.com",
+        "age": "20",
+        "weight": "0",
+        "feet_tall": "1.62"
+    },
     "invalid_height": {
         "name": "Short Jimmy",
         "email": "short@jimmy.com",
