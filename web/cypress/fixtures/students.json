@@ -1,0 +1,52 @@
+{
+    "create": {
+        "name": "Jeremy Adams",
+        "email": "jeremy@yahoo.com",
+        "age": "28",
+        "weight": "72",
+        "feet_tall": "1.80"
+    },
+    "duplicate": {
+        "name": "Bruce Wayne",
+        "email": "bruce@wayne.com",
+        "age": "28",
+        "weight": "72",
+        "feet_tall": "1.80"
+    },
+    "remove": {
+        "name": "Falcao Delete",
+        "email": "falcaoe@gmail.com",
+        "age": "28",
+        "weight": "72",
+        "feet_tall": "1.80"
+    },
+    "required": {
+        "name": "",
+        "email": " ",
+        "age": " ",
+        "weight": " ",
+        "feet_tall": " "
+    },
+    "invalid_age": {
+        "name": "Damian Wayne",
+        "email": "damian@wayne.com",
+        "age": "15",
+        "weight": "60",
+        "feet_tall": "1.50"
+    },
+    "invalid_weight":
+        {
+            "name": "Jonh Zero Weight",
+            "email": "johnzero@weight.com",
+            "age": "20",
+            "weight": "0",
+            "feet_tall": "1.62"
+        },
+    "invalid_height": {
+        "name": "Short Jimmy",
+        "email": "short@jimmy.com",
+        "age": "18",
+        "weight": "50",
+        "feet_tall": "0"
+    }
+}
