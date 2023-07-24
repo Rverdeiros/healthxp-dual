@@ -13,7 +13,7 @@ describe('alunos', () => {
         studentPage.goToRegister()
         studentPage.submitForm(student)
         studentPage.popup.haveText('Dados cadastrados com sucesso.')
-   
+
     })
 
     it('não deve cadastrar com e-mail duplicado', () => {
@@ -64,35 +64,35 @@ describe('alunos', () => {
         studentPage.requiredMessage('Idade', 'A idade é obrigatória')
         studentPage.requiredMessage('Peso (em kg)', 'O peso é obrigatório')
         studentPage.requiredMessage('Altura', 'A altura é obrigatória')
-   
+
     })
-    
-    it('tentar cadastrar um aluno menor de 16 anos', ()=>{
+
+    it('tentar cadastrar um aluno menor de 16 anos', () => {
         const student = students.invalid_age
-        
+
         cy.adminLogin()
         studentPage.goToRegister()
         studentPage.submitForm(student)
         studentPage.requiredMessage('Idade', 'A idade mínima para treinar é 16 anos!')
     })
-    
-    it('tentar cadastrar informando peso incorreto', ()=>{
+
+    it('tentar cadastrar informando peso incorreto', () => {
         const student = students.invalid_weight
-        
-        cy.task('deleteStudent', student.email)        
-        
+
+        cy.task('deleteStudent', student.email)
+
         cy.adminLogin()
         studentPage.goToRegister()
         studentPage.submitForm(student)
         studentPage.requiredMessage('Peso (em kg)', 'O peso deve ser maior do que 0!')
 
     })
-    
-    it('tentar cadastrar informando altura incorreta', ()=>{
+
+    it('tentar cadastrar informando altura incorreta', () => {
         const student = students.invalid_height
-        
+
         cy.task('deleteStudent', student.email)
-        
+
         cy.adminLogin()
         studentPage.goToRegister()
         studentPage.submitForm(student)
