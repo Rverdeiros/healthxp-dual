@@ -77,7 +77,7 @@ describe('alunos', () => {
     })
     
     it('tentar cadastrar informando peso incorreto', ()=>{
-        const student = students.invalid_height
+        const student = students.invalid_weight
         
         cy.task('deleteStudent', student.email)        
         
