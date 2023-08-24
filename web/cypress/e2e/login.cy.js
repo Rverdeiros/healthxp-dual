@@ -41,7 +41,7 @@ describe('login', () => {
 
     })
 
-    it.only('não deve logar com email incorreto', () => {
+    it('não deve logar com email incorreto', () => {
         
         const emails = users.inv_emails
         //Primeira opção, validando as mensagens após executar cada item da massa de testes:
@@ -69,7 +69,7 @@ describe('login', () => {
                 .then((t) => {
                     cy.log(t)
                     outputMessages.push(t) //Adiciona o texto invocado no array da variável outputMessages
-                    expectedMessages.push('Insira um e-mail válido.') //Mensagem esperada de acordo com as regras de negócio.
+                    expectedMessages.push('Insira um email válido.') //Mensagem esperada de acordo com as regras de negócio.
                     
                 })
 
@@ -77,7 +77,7 @@ describe('login', () => {
 
         })
     
-            cy.wrap(outputMessages).should('equal', expectedMessages) //Compara o resultado das duas listas criadas
+            cy.wrap(outputMessages).should('deep.equal', expectedMessages) //Compara o resultado das duas listas criadas
     })
 
     it('não deve logar com email em branco', () => {

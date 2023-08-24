@@ -8,21 +8,32 @@ class LoginPage {
     }
 
     go() {
-        cy.visit('http://localhost:3000')
+        cy.visit('/')
     }
 
     fill(user) {
         
-        if (user.email) {
-            cy.get('#email')
-            .clear()
-            .type(user.email)
-        }
-        if (user.password) {
-            cy.get('#password')
-            .clear({ force : true}) //O force true garante que o comando será executado
-            .type(user.password)
-        }
+        //Definindo um ALIAS para os elementos referentes aos campos
+        cy.get('input[name=email]').clear({ force : true}).as('email')
+        cy.get('input[name=password]').clear({ force : true}).as('password')
+
+        //Formato de IF ternário mais "profissional"
+        //Não usamos o comando IF. A condição é passada através da interrogação, seguida do comando caso positivo e o comando caso negativo vem após os dois pontos.
+        user.email ? cy.get('@email').type(user.email) : cy.log('empty email')
+        user.password ? cy.get('@password').type(user.password) : cy.log('empty email')
+
+        // IF Tradicional
+
+        // if (user.email) {
+        //     cy.get('@email]')
+        //     .clear()
+        //     .type(user.email)
+        // }
+        // if (user.password) {
+        //     cy.get('@password')
+        //     .clear({ force : true}) //O force true garante que o comando será executado
+        //     .type(user.password)
+        // }
     }
     
     submit() {

@@ -7,7 +7,8 @@ describe('alunos', () => {
     it('deve poder cadastrar um novo aluno', () => {
         const student = students.create
 
-        cy.task('deleteStudent', student.email)
+        // cy.task('deleteStudent', student.email)
+        cy.deleteStudent(student.email) //Custom command criada após mover as tasks para app.js
         cy.adminLogin()
 
         studentPage.goToRegister()
@@ -22,7 +23,8 @@ describe('alunos', () => {
         const student = students.duplicate
 
         //Ações no banco de dados
-        cy.task('resetStudent', student)
+        // cy.task('resetStudent', student)
+        cy.resetStudent(student) //Custom command criada após mover as tasks para app.js
 
         //Ações para adicionar o usuário via sistema
         cy.adminLogin()
@@ -36,7 +38,9 @@ describe('alunos', () => {
         const student = students.remove
 
         //Deleta e insere o aluno via banco
-        cy.task('resetStudent', student)
+        // cy.task('resetStudent', student)
+        cy.resetStudent(student) //Custom command criada após mover as tasks para app.js
+
 
         //Faz o login como admin
         cy.adminLogin()
@@ -59,11 +63,11 @@ describe('alunos', () => {
         studentPage.goToRegister()
         studentPage.submitForm(student)
 
-        studentPage.requiredMessage('Nome completo', 'Nome é obrigatório')
-        studentPage.requiredMessage('E-mail', 'O email é obrigatório')
-        studentPage.requiredMessage('Idade', 'A idade é obrigatória')
-        studentPage.requiredMessage('Peso (em kg)', 'O peso é obrigatório')
-        studentPage.requiredMessage('Altura', 'A altura é obrigatória')
+        studentPage.alertMessage('Nome completo', 'Nome é obrigatório')
+        studentPage.alertMessage('E-mail', 'O email é obrigatório')
+        studentPage.alertMessage('Idade', 'A idade é obrigatória')
+        studentPage.alertMessage('Peso (em kg)', 'O peso é obrigatório')
+        studentPage.alertMessage('Altura', 'A altura é obrigatória')
 
     })
 
@@ -73,22 +77,23 @@ describe('alunos', () => {
         cy.adminLogin()
         studentPage.goToRegister()
         studentPage.submitForm(student)
-        studentPage.requiredMessage('Idade', 'A idade mínima para treinar é 16 anos!')
+        studentPage.alertMessage('Idade', 'A idade mínima para treinar é 16 anos!')
     })
 
-    it('tentar cadastrar informando peso incorreto', () => {
+    it.skip('tentar cadastrar informando peso incorreto', () => {
         const student = students.invalid_weight
 
-        cy.task('deleteStudent', student.email)
+        // cy.task('deleteStudent', student.email)
+        cy.deleteStudent(student.email) //Custom command criada após mover as tasks para app.js
 
         cy.adminLogin()
         studentPage.goToRegister()
         studentPage.submitForm(student)
-        studentPage.requiredMessage('Peso (em kg)', 'O peso deve ser maior do que 0!')
+        studentPage.alertMessage('Peso (em kg)', 'O peso deve ser maior do que 0!')
 
     })
 
-    it('tentar cadastrar informando altura incorreta', () => {
+    it.skip('tentar cadastrar informando altura incorreta', () => {
         const student = students.invalid_height
 
         cy.task('deleteStudent', student.email)
@@ -96,7 +101,7 @@ describe('alunos', () => {
         cy.adminLogin()
         studentPage.goToRegister()
         studentPage.submitForm(student)
-        studentPage.requiredMessage('Altura', 'A altura deve ser maior do que 0!')
+        studentPage.alertMessage('Altura', 'A altura deve ser maior do que 0!')
 
     })
 

@@ -1,5 +1,9 @@
+require ('dotenv').config()
 const { defineConfig } = require("cypress");
 const { Pool } = require('pg') //Importação da biblioteca postgres para o cypress
+
+//As tasks foram movidas para helpers/app.js
+//Estão mantidas aqui para fins de consulta
 
 //Constante com as informações para conectar ao banco de dados
 const dbCOnfig = {
@@ -18,6 +22,21 @@ module.exports = defineConfig({
 
       on('task', {
 
+        selectStudentId(studentEmail) {
+          return new Promise(function (resolve, reject) {
+            const pool = new Pool(dbCOnfig)
+
+            const query = 'SELECT id FROM students WHERE email =$1'
+
+            pool.query(query, [studentEmail], function (error, result) {
+              if (error) {
+                reject({ error: error })
+              }
+              resolve({ sucess: result })
+              pool.end()
+            })
+          })
+        },
         //Task para deletar o usuário do banco de dados, utilizando o e-mail como parâmetro de busca 
         deleteStudent(studentEmail) {
           return new Promise(function (resolve, reject) {
@@ -85,5 +104,9 @@ module.exports = defineConfig({
         // }
       })
     },
+    baseUrl: process.env.BASE_URL,
+    env: {
+      apiHelper: process.env.API_HELPER //Usando a variável de ambiente para definir o apiHelper
+    }
   },
 });
